@@ -1,6 +1,6 @@
 // Конфигурация API
 const API_CONFIG = {
-    baseUrl: 'https://nomnom-nine.vercel.app/',
+    baseUrl: 'http://localhost:3000/api/v4',
     accessToken: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjZjNDAwYWI2MDMyMmVmYzU4YWYwMDNmYmE0MzlmNWM1NTNkZTEwMWE1MjcxOTM0MWM1ZTcxMjk1ZTY1MTkwMDhlYTdjY2YzZjA3NGY1MjYzIn0.eyJhdWQiOiJhNDI4OTRlMS1mNTFiLTQ4NDQtOTc3Yy1hNDY4ODQxNGUzZDMiLCJqdGkiOiI2YzQwMGFiNjAzMjJlZmM1OGFmMDAzZmJhNDM5ZjVjNTUzZGUxMDFhNTI3MTkzNDFjNWU3MTI5NWU2NTE5MDA4ZWE3Y2NmM2YwNzRmNTI2MyIsImlhdCI6MTc0Mzk5MDI2NCwibmJmIjoxNzQzOTkwMjY0LCJleHAiOjE3NDQwNzY2NjQsInN1YiI6IjEyMzQyNDUwIiwiZ3JhbnRfdHlwZSI6IiIsImFjY291bnRfaWQiOjMyMzM5NjkwLCJiYXNlX2RvbWFpbiI6ImFtb2NybS5ydSIsInZlcnNpb24iOjIsInNjb3BlcyI6WyJwdXNoX25vdGlmaWNhdGlvbnMiLCJmaWxlcyIsImNybSIsImZpbGVzX2RlbGV0ZSIsIm5vdGlmaWNhdGlvbnMiXSwiaGFzaF91dWlkIjoiOTBlM2UwYmQtMWQ4Zi00YmU4LTgwZWYtYWJiMTM2ZDc2YzllIiwiYXBpX2RvbWFpbiI6ImFwaS1iLmFtb2NybS5ydSJ9.V7eDDY6c9f9I76SMMSOs-UKVYwViG0IWAdlTonG3xkw-ONQoupAl1o2Dqr3tG3Ar-ercJZShO0DHXezIgoYxOeQIoqtuh7Fya8kXJlk-oJbcqu-161p2aDGl6LI_FHMVoauI6SjABW8rJyMRrmVkYyJb7vpT-ojQraOnWyfRw1tfqiM3sRNgc9dKy_7j8F_leAQdLgASz3b8AzabN5bVAPBY7C1y61UOGEiEGLJ9cJq078xU9cHzaBbFGD7wD0C_8q9zKkC8LexUN9f3k39qzdKLCM8O_m6NNIPmrnohSM-w1QCVuKTRm_lfQFCuwelomowOMIIjc3L1PkhCBZjN4g', // Замените на ваш токен
     headers: {
         'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjZjNDAwYWI2MDMyMmVmYzU4YWYwMDNmYmE0MzlmNWM1NTNkZTEwMWE1MjcxOTM0MWM1ZTcxMjk1ZTY1MTkwMDhlYTdjY2YzZjA3NGY1MjYzIn0.eyJhdWQiOiJhNDI4OTRlMS1mNTFiLTQ4NDQtOTc3Yy1hNDY4ODQxNGUzZDMiLCJqdGkiOiI2YzQwMGFiNjAzMjJlZmM1OGFmMDAzZmJhNDM5ZjVjNTUzZGUxMDFhNTI3MTkzNDFjNWU3MTI5NWU2NTE5MDA4ZWE3Y2NmM2YwNzRmNTI2MyIsImlhdCI6MTc0Mzk5MDI2NCwibmJmIjoxNzQzOTkwMjY0LCJleHAiOjE3NDQwNzY2NjQsInN1YiI6IjEyMzQyNDUwIiwiZ3JhbnRfdHlwZSI6IiIsImFjY291bnRfaWQiOjMyMzM5NjkwLCJiYXNlX2RvbWFpbiI6ImFtb2NybS5ydSIsInZlcnNpb24iOjIsInNjb3BlcyI6WyJwdXNoX25vdGlmaWNhdGlvbnMiLCJmaWxlcyIsImNybSIsImZpbGVzX2RlbGV0ZSIsIm5vdGlmaWNhdGlvbnMiXSwiaGFzaF91dWlkIjoiOTBlM2UwYmQtMWQ4Zi00YmU4LTgwZWYtYWJiMTM2ZDc2YzllIiwiYXBpX2RvbWFpbiI6ImFwaS1iLmFtb2NybS5ydSJ9.V7eDDY6c9f9I76SMMSOs-UKVYwViG0IWAdlTonG3xkw-ONQoupAl1o2Dqr3tG3Ar-ercJZShO0DHXezIgoYxOeQIoqtuh7Fya8kXJlk-oJbcqu-161p2aDGl6LI_FHMVoauI6SjABW8rJyMRrmVkYyJb7vpT-ojQraOnWyfRw1tfqiM3sRNgc9dKy_7j8F_leAQdLgASz3b8AzabN5bVAPBY7C1y61UOGEiEGLJ9cJq078xU9cHzaBbFGD7wD0C_8q9zKkC8LexUN9f3k39qzdKLCM8O_m6NNIPmrnohSM-w1QCVuKTRm_lfQFCuwelomowOMIIjc3L1PkhCBZjN4g',
@@ -16,9 +16,9 @@ class RequestManager {
         this.queue = [];
     }
 
-    async makeRequest(url, options = {}) {
+    async makeRequest(url, method = 'GET', data = null) {
         return new Promise((resolve) => {
-            this.queue.push({ url, options, resolve });
+            this.queue.push({ url, method, data, resolve });
             this.processQueue();
         });
     }
@@ -35,19 +35,24 @@ class RequestManager {
             return;
         }
 
-        const { url, options, resolve } = this.queue.shift();
+        const { url, method, data, resolve } = this.queue.shift();
         this.lastRequestTime = now;
 
         try {
-            const response = await fetch(url, {
-                ...options,
+            const options = {
+                method,
                 headers: {
-                    ...API_CONFIG.headers,
-                    ...options.headers
+                    ...API_CONFIG.headers
                 }
-            });
-            const data = await response.json();
-            resolve(data);
+            };
+
+            if (data) {
+                options.body = JSON.stringify(data);
+            }
+
+            const response = await fetch(url, options);
+            const responseData = await response.json();
+            resolve(responseData);
         } catch (error) {
             console.error('Ошибка запроса:', error);
             resolve(null);
@@ -91,18 +96,32 @@ function getTaskStatus(task) {
 
 // Функция для загрузки сделок
 async function loadDeals() {
-    const dealsUrl = `${API_CONFIG.baseUrl}/api/v4/leads`;
-    const deals = await requestManager.makeRequest(dealsUrl);
+    const dealsUrl = `${API_CONFIG.baseUrl}/leads`;
+    const deals = await requestManager.makeRequest(dealsUrl, 'GET');
 
-    if (!deals) return;
+    if (!deals || !deals._embedded || !deals._embedded.leads) return;
 
     const tableBody = document.getElementById('dealsTableBody');
     tableBody.innerHTML = '';
 
+    const dealsMap = new Map(); // Используем Map для хранения уникальных сделок
+
     for (const deal of deals._embedded.leads) {
-        const contacts = await loadContacts(deal.id);
-        
-        for (const contact of contacts) {
+        if (!dealsMap.has(deal.id)) {
+            // Получаем контакты для сделки
+            const contactsUrl = `${API_CONFIG.baseUrl}/leads/${deal.id}/contacts`;
+            const contactsResponse = await requestManager.makeRequest(contactsUrl, 'GET');
+            const contacts = contactsResponse?._embedded?.contacts || [];
+            const mainContact = contacts.length > 0 ? contacts[0] : null;
+            
+            let phone = 'Нет телефона';
+            if (mainContact?.custom_fields_values) {
+                const phoneField = mainContact.custom_fields_values.find(field => field.field_code === 'PHONE');
+                if (phoneField?.values?.[0]?.value) {
+                    phone = phoneField.values[0].value;
+                }
+            }
+
             const row = document.createElement('tr');
             row.className = 'cursor-pointer';
             row.onclick = () => showDealDetails(deal.id);
@@ -111,21 +130,14 @@ async function loadDeals() {
                 <td>${deal.id}</td>
                 <td>${deal.name}</td>
                 <td>${deal.price || 0}</td>
-                <td>${contact.name}</td>
-                <td>${contact.phone || 'Нет телефона'}</td>
+                <td>${mainContact ? mainContact.name : 'Нет контакта'}</td>
+                <td>${phone}</td>
             `;
             
             tableBody.appendChild(row);
+            dealsMap.set(deal.id, true);
         }
     }
-}
-
-// Функция для загрузки контактов сделки
-async function loadContacts(dealId) {
-    const contactsUrl = `${API_CONFIG.baseUrl}/api/v4/contacts?filter[leads][id]=${dealId}`;
-    const contacts = await requestManager.makeRequest(contactsUrl);
-    
-    return contacts?._embedded?.contacts || [];
 }
 
 // Функция для отображения деталей сделки
@@ -138,12 +150,12 @@ async function showDealDetails(dealId) {
     content.style.display = 'none';
     modal.show();
 
-    const dealUrl = `${API_CONFIG.baseUrl}/api/v4/leads/${dealId}`;
-    const tasksUrl = `${API_CONFIG.baseUrl}/api/v4/tasks?filter[entity_id]=${dealId}`;
+    const dealUrl = `${API_CONFIG.baseUrl}/leads/${dealId}`;
+    const tasksUrl = `${API_CONFIG.baseUrl}/tasks?filter[entity_id]=${dealId}`;
     
     const [deal, tasks] = await Promise.all([
-        requestManager.makeRequest(dealUrl),
-        requestManager.makeRequest(tasksUrl)
+        requestManager.makeRequest(dealUrl, 'GET'),
+        requestManager.makeRequest(tasksUrl, 'GET')
     ]);
 
     if (deal) {
