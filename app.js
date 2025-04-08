@@ -118,12 +118,15 @@ class RequestManager {
 const requestManager = new RequestManager();
 
 // Функция для форматирования даты
-function formatDate(dateString) {
-    const date = new Date(dateString);
+function formatDate(timestamp) {
+    // Если timestamp в секундах (как в задачах), умножаем на 1000
+    const date = new Date(timestamp * 1000);
     return date.toLocaleDateString('ru-RU', {
         day: '2-digit',
         month: '2-digit',
-        year: 'numeric'
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
     });
 }
 
@@ -131,7 +134,7 @@ function formatDate(dateString) {
 function getTaskStatus(task) {
     if (!task) return { color: 'red', text: 'Нет задач' };
 
-    const taskDate = new Date(task.complete_till * 1000);
+    const taskDate = new Date(task.complete_till * 1000); // Умножаем на 1000, так как timestamp в секундах
     const now = new Date();
     const today = new Date(now.getFullYear(), now.getMonth(), now.getDate()); // начало текущего дня
     const tomorrow = new Date(today);
@@ -248,38 +251,61 @@ async function loadDeals() {
 // Функция для отображения деталей сделки
 async function showDealDetails(dealId) {
     const modal = new bootstrap.Modal(document.getElementById('dealDetailsModal'));
-    const spinner = document.getElementById('dealSpinner');
-    const content = document.getElementById('dealDetailsContent');
-    
-    spinner.style.display = 'block';
-    content.style.display = 'none';
     modal.show();
 
-    const dealUrl = `${API_CONFIG.baseUrl}/leads/${dealId}`;
-    const tasksUrl = `${API_CONFIG.baseUrl}/tasks?filter[entity_id]=${dealId}`;
-    
-    const [deal, tasks] = await Promise.all([
-        requestManager.makeRequest(dealUrl, 'GET'),
-        requestManager.makeRequest(tasksUrl, 'GET')
-    ]);
+    const loadingIndicator = document.getElementById('loadingIndicator');
+    const dealContent = document.getElementById('dealContent');
 
-    if (deal) {
-        const nearestTask = tasks?._embedded?.tasks?.[0];
-        const status = getTaskStatus(nearestTask);
+    // Показываем индикатор загрузки
+    loadingIndicator.style.display = 'block';
+    dealContent.style.display = 'none';
+    dealContent.innerHTML = '';
 
-        document.getElementById('dealId').textContent = deal.id;
-        document.getElementById('dealName').textContent = deal.name;
-        document.getElementById('dealDate').textContent = formatDate(deal.created_at * 1000);
-        
-        const taskStatusElement = document.getElementById('taskStatus');
-        taskStatusElement.innerHTML = `
-            <span class="status-circle status-${status.color}"></span>
-            ${status.text}
+    try {
+        // Получаем детали сделки
+        const dealUrl = `${API_CONFIG.baseUrl}/leads/${dealId}`;
+        const deal = await requestManager.makeRequest(dealUrl, 'GET');
+
+        if (!deal) {
+            throw new Error('Не удалось загрузить детали сделки');
+        }
+
+        // Получаем задачи для сделки
+        const tasksUrl = `${API_CONFIG.baseUrl}/tasks?filter[entity_id]=${dealId}`;
+        const tasksResponse = await requestManager.makeRequest(tasksUrl, 'GET');
+        const task = tasksResponse?._embedded?.tasks?.[0];
+        console.log(task);
+
+        // Получаем статус задачи
+        const status = getTaskStatus(task);
+
+        // Формируем HTML с деталями
+        const detailsHtml = `
+            <div class="deal-details">
+                <p><strong>ID:</strong> ${deal.id}</p>
+                <p><strong>Название:</strong> ${deal.name}</p>
+                <p><strong>Бюджет:</strong> ${deal.price || 0}</p>
+                <p><strong>Дата создания:</strong> ${formatDate(deal.created_at)}</p>
+                <p>
+                    <strong>Статус задачи:</strong>
+                    <span class="status-circle status-${status.color}"></span>
+                    ${status.text}
+                </p>
+                ${task ? `<p><strong>Дата выполнения задачи:</strong> ${formatDate(task.complete_till)}</p>` : ''}
+            </div>
         `;
-    }
 
-    spinner.style.display = 'none';
-    content.style.display = 'block';
+        // Скрываем индикатор загрузки и показываем контент
+        loadingIndicator.style.display = 'none';
+        dealContent.style.display = 'block';
+        dealContent.innerHTML = detailsHtml;
+
+    } catch (error) {
+        console.error('Ошибка при загрузке деталей:', error);
+        dealContent.innerHTML = '<div class="alert alert-danger">Ошибка при загрузке деталей сделки</div>';
+        loadingIndicator.style.display = 'none';
+        dealContent.style.display = 'block';
+    }
 }
 
 // Инициализация при загрузке страницы

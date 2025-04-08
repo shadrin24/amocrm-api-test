@@ -28,22 +28,22 @@
     </div>
 
     <!-- Модальное окно для деталей сделки -->
-    <div class="modal fade" id="dealDetailsModal" tabindex="-1">
+    <div class="modal fade" id="dealDetailsModal" tabindex="-1" aria-labelledby="dealDetailsModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Детали сделки</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <h5 class="modal-title" id="dealDetailsModalLabel">Детали сделки</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="spinner-border text-primary" role="status" id="dealSpinner">
-                        <span class="visually-hidden">Загрузка...</span>
-                    </div>
-                    <div id="dealDetailsContent" style="display: none;">
-                        <p><strong>ID:</strong> <span id="dealId"></span></p>
-                        <p><strong>Название:</strong> <span id="dealName"></span></p>
-                        <p><strong>Дата:</strong> <span id="dealDate"></span></p>
-                        <p><strong>Статус задачи:</strong> <span id="taskStatus"></span></p>
+                    <div id="dealDetails">
+                        <div id="loadingIndicator" style="display: none;">
+                            <div class="loader"></div>
+                            <span>Загрузка деталей...</span>
+                        </div>
+                        <div id="dealContent" style="display: none;">
+                            <!-- Содержимое будет добавлено динамически -->
+                        </div>
                     </div>
                 </div>
             </div>
